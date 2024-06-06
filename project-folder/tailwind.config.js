@@ -8,13 +8,19 @@ export default {
     extend: {
       colors: {
         'primary-red': '#EA1E1E',
+        'highlight-red': '#FF4672',
         'box-background': '#261C26',
         'border-red': '#EA1E1E25',
+        'box-green': '#0FA35360',
+        'border-green': '#0FA353',
+        'box-background-darker': '#171117',
+        'fade-modal': '#08061775'
       },
 
       fontFamily: {
         'karantina': ['Karantina', 'sans-serif'],
         'inter': ['Inter', 'sans-serif'],
+        'imbue': ['Imbue', 'sans-serif'],
       },
 
       fontSize: {
@@ -24,16 +30,22 @@ export default {
       },
 
       backgroundImage: theme => ({
-        'main': "url('src/assets/main_background.png')",
+        'main': "url('src/assets/main_background.svg')",
+        'header': "url('src/assets/header_background.svg')",
       }),
 
       width: {
         '500': '31.25rem',
+        '550': '34.375rem',
+        '600': '37.5rem',
         '700': '43rem',
       },
 
       height: {
+        '200': '12.5rem',
         '400': '25rem',
+        '450': '28.125rem',
+        '500': '31.25rem',
       },
 
       padding: {

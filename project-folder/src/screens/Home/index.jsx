@@ -10,9 +10,9 @@ export default function Home() {
         flex flex-col items-center justify-center
         lg:flex-row lg:justify-between lg:items-start
         w-full h-screen
-        bg-main bg-cover bg-center bg-no-repea"
+        bg-main bg-cover bg-center bg-no-repeat"
         >
-            <Navbar />
+            <Navbar screen={'home'} />
             <div className="
                 px-5
                 md:px-10
@@ -149,7 +149,7 @@ export default function Home() {
                     text-white text-md font-inter font-bold
                     lg:text-base
                     xl:text-xl
-                    shadow-red"
+                    hover:bg-highlight-red hover:shadow-red cursor-pointer duration-200"
                     to="/menu"
                 >
                     Visualizar CARDÁPIO
