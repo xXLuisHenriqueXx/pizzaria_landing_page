@@ -29,10 +29,10 @@ export default {
         '13xl': '13rem',
       },
 
-      backgroundImage: theme => ({
-        'main': "url('src/assets/main_background.svg')",
-        'header': "url('src/assets/header_background.svg')",
-      }),
+      backgroundImage: {
+        main: "url('/src/assets/backgrounds/main_background.svg')",
+        header: "url('/src/assets/backgrounds/header_background.svg')",
+      },
 
       width: {
         '500': '31.25rem',
