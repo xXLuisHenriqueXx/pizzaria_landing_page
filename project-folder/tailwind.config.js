@@ -5,6 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      sm: "425px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1366px",
+      "2xl": "1440px",
+      "3xl": "1920px",
+    },
     extend: {
       colors: {
         'primary-red': '#EA1E1E',
@@ -14,7 +22,7 @@ export default {
         'box-green': '#0FA35360',
         'border-green': '#0FA353',
         'box-background-darker': '#171117',
-        'fade-modal': '#08061775'
+        'fade-modal': '#08061790'
       },
 
       fontFamily: {

@@ -13,7 +13,7 @@ function ContainerSize({ size, setSelectedSize}) {
     flex items-center justify-center gap-10
     lg:flex-col lg:gap-2
     xl:gap-6
-    bg-box-background border-2 border-border-red rounded-3xl
+    bg-box-background rounded-xl
     hover:shadow-red cursor-pointer"
     >
         <img

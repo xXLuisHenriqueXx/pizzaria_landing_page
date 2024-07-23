@@ -117,14 +117,15 @@ export default function Home() {
                 lg:absolute lg:right-0 lg:bottom-20
                 xl:p-12
                 xl:right-10
-                2xl:right-32
+                2xl:right-10 2xl:bottom-32
                 w-[90%] h-48
                 md:w-[80%] md:h-56
                 lg:w-500 lg:h-80
-                xl:w-700 xl:h-400
+                2xl:w-700 2xl:h-400
                 flex flex-col justify-center 
                 bg-box-background
-                border-2 border-border-red rounded-3xl"
+                shadow-red
+                rounded-xl"
             >
                 <h2
                     className="
@@ -139,11 +140,12 @@ export default function Home() {
                     className="
                     mt-10 gap-4
                     lg:mt-20
-                    xl:mt-32
+                    xl:mt-28
+                    2xl:mt-32
                     w-full h-12
                     md:h-14
-                    lg:h-16
-                    xl:h-20
+                    lg:h-20
+                    xl:h-24
                     flex items-center justify-center
                     bg-primary-red rounded-lg
                     text-white text-md font-inter font-bold

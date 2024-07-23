@@ -7,16 +7,17 @@ function ContainerDrinks({ drink }) {
         key={drink._id}
         className="
         w-full h-36 mt-4
-        md:w-[95%]
-        xl:w-600 xl:h-200
-        flex items-center justify-center gap-4
-        xl:gap-10
-        2xl:w-550 2xl:h-200
-        bg-box-background border-2 border-border-red rounded-3xl"
+            md:w-[95%]
+            flex items-center justify-center gap-4
+            xl:gap-10
+            xl:h-44
+            2xl:w-550 2xl:h-200
+            bg-box-background rounded-xl"
     >
         <img
         className="w-24 h-24 rounded-md object-cover
-        xl:w-40 xl:h-40"
+            xl:w-28 xl:h-28
+            2xl:w-40 2xl:h-40"
         src={drink.imgSrc}
         alt={drink.imgAlt}
         />
