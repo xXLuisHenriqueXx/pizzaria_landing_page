@@ -9,40 +9,38 @@ const icon = "w-8 h-8 text-white md:w-10 md:h-10 hover:text-primary-red cursor-p
 
 function Navbar({ screen, setShowModal }) {
   return (
-    <div className='
-        w-full h-16 px-5
-        md:h-20 md:px-10
-        xl:px-20
-        2xl:px-42
-        fixed top-0 left-0
-        flex justify-between items-center
-        z-50
-    '>
-      <div>
+    <div className="
+      w-full h-16 px-5
+      md:h-20 md:px-10
+      xl:px-20
+      2xl:px-42
+      fixed top-0 left-0
+      flex justify-between items-center
+      z-40
+    ">
+      <Link to='/'>
         <img
-          className='
+          className="
             w-10 h-10
-            md:w-14 md:h-14'
+            md:w-14 md:h-14"
           src={Logo}
           alt="Logo da pizzaria DevPizza"
         />
-      </div>
-      <div className='
-            flex items-center
-            gap-4
-          '
-      >
-        {screen === 'home' ? (
+      </Link>
+      <div className="
+        flex items-center
+        gap-4
+      ">
+        { screen === 'home' ? (
           <Link to="/menu">
             <BiFoodMenu
-            className={icon}
-            
-          />
+              className={icon}
+            />
           </Link>
         ) : (
           <BiCart
-          onClick={() => setShowModal(true)}
-          className={icon}
+            onClick={() => setShowModal(true)}
+            className={icon}
           />
         )}
         <BiLogoWhatsapp

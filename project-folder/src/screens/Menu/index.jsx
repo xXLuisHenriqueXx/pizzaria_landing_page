@@ -26,6 +26,7 @@ const pizzaSizes = [
     {
         _id: 1,
         value: 1,
+        price: 24,
         title: "Broto",
         hungry: "Fome pequena;",
         slices: "4 pedaços;",
@@ -37,6 +38,7 @@ const pizzaSizes = [
     {
         _id: 2,
         value: 3,
+        price: 65,
         title: "Média",
         hungry: "Fome moderada;",
         slices: "16 pedaços;",
@@ -48,6 +50,7 @@ const pizzaSizes = [
     {
         _id: 3,
         value: 4,
+        price: 85,
         title: "Família",
         hungry: "Fome gigante;",
         slices: "36 pedaços;",
@@ -128,21 +131,21 @@ const drinks = [
     {
         _id: 1,
         title: "Coca-Cola",
-        price: 5.00,
+        price: 5,
         imgSrc: coca,
         imgAlt: "Lata de Coca-Cola"
     },
     {
         _id: 2,
         title: "Guaraná Antarctica",
-        price: 4.50,
+        price: 4.5,
         imgSrc: guarana,
         imgAlt: "Lata de Guaraná Antarctica"
     },
     {
         _id: 3,
         title: "Suco de Laranja",
-        price: 6.00,
+        price: 6,
         imgSrc: sucoLaranja,
         imgAlt: "Suco de laranja"
     },
@@ -156,14 +159,14 @@ const drinks = [
     {
         _id: 5,
         title: "Schweppes Zero",
-        price: 7.00,
+        price: 7,
         imgSrc: schweppesZero,
         imgAlt: "Lata de Schweppes Zero"
     },
     {
         _id: 6,
         title: "Chá Gelado",
-        price: 5.50,
+        price: 5.5,
         imgSrc: chaGelado,
         imgAlt: "Lata de chá gelado"
     }
@@ -174,10 +177,38 @@ const pizzaDrinkText = "text-white text-base font-inter font-bold lg:text-lg 2xl
 
 export default function Menu() {
     const [selectedSize, setSelectedSize] = useState(0);
+    const [sizePrice, setSizePrice] = useState(0);
     const [showPizzas, setShowPizzas] = useState(true);
     const [selectedPizzaFlavors, setSelectedPizzaFlavors] = useState([]);
     const [selectedDrinks, setSelectedDrinks] = useState([]);
     const [showModal, setShowModal] = useState(false);
+
+    const handleSelectFlavor = (pizza) => {
+        if (selectedPizzaFlavors.includes(pizza)) {
+            alert("Você já selecionou esse sabor!");
+            return;
+        } else {
+            if (selectedPizzaFlavors.length < selectedSize) {
+                setSelectedPizzaFlavors([...selectedPizzaFlavors, pizza]);
+            } else {
+                alert(`Você só pode selecionar até ${selectedSize} sabores!`);
+                return;
+            }
+        }
+    }
+
+    const handleSelectDrink = (drink) => {
+        const existingDrink = selectedDrinks.find(d => d._id === drink._id);
+
+        if (existingDrink) {
+            const updatedDrinks = selectedDrinks.map(d => 
+                d._id === drink._id ? { ...d, quantity: d.quantity + 1 } : d
+            );
+            setSelectedDrinks(updatedDrinks);
+        } else {
+            setSelectedDrinks([...selectedDrinks, { ...drink, quantity: 1 }]);
+        }
+    }
 
     return (
         <div style={{
@@ -186,25 +217,24 @@ export default function Menu() {
             msOverflowStyle: 'none',
         }} 
         className="
-        flex flex-col
-        w-full min-h-screen pb-4
-        bg-main bg-no-repeat bg-cover bg-center"
-        >
+            flex flex-col
+            w-full min-h-screen pb-4
+            bg-main bg-no-repeat bg-cover bg-center
+        ">
             <Navbar setShowModal={setShowModal} screen={'menu'} />
             
             <Header />
 
             <main className="
-            px-5
-            md:px-10
-            xl:px-20
-            "
-            >
+                px-5
+                md:px-10
+                xl:px-20
+            ">
                 <section className="
-                w-full py-4
-                flex items-center justify-around
-                border-b-2 border-border-red"
-                >
+                    w-full py-4
+                    flex items-center justify-around
+                    border-b-2 border-border-red
+                ">
                     <h2 className={pizzaDrinkText}
                     onClick={() => setShowPizzas(true)}
                     >
@@ -225,11 +255,9 @@ export default function Menu() {
                             Escolha a pizza do tamanho da sua fome!
                         </h2>
                         
-                        <div className="
-                        lg:flex lg:items-center lg:justify-around 2xl:w-[80%] 2xl:mx-auto"
-                        >
+                        <div className="lg:flex lg:items-center lg:justify-around 2xl:w-[80%] 2xl:mx-auto">
                             {pizzaSizes.map((size, index) => (
-                                <ContainerSize size={size} key={size._id} setSelectedSize={setSelectedSize} />
+                                <ContainerSize size={size} key={size._id} setSelectedSize={setSelectedSize} setSizePrice={setSizePrice}/>
                             ))}
                         </div>
                     </section>
@@ -249,7 +277,7 @@ export default function Menu() {
                         <div
                         className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 md:place-items-center">
                             {pizzaFlavors.map((pizza, index) => (
-                                <ContainerFlavor pizza={pizza} key={pizza._id} />
+                                <ContainerFlavor pizza={pizza} key={pizza._id} handleSelectFlavor={handleSelectFlavor} />
                             ))}
                         </div>
                     </section>
@@ -258,15 +286,15 @@ export default function Menu() {
                 {!showPizzas && (
                     <section>
                         <h2 className="
-                        mt-4 text-white text-sm lg:text-lg font-inter font-semibold text-center"
-                        >
+                            mt-4 text-white text-sm lg:text-lg font-inter font-semibold text-center
+                        ">
                             Conheça nossas bebidas!
                         </h2>
 
                         <div
                         className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 md:place-items-center">
                             {drinks.map((drink, index) => (
-                                <ContainerDrinks drink={drink} key={drink._id} />
+                                <ContainerDrinks drink={drink} key={drink._id} handleSelectDrink={handleSelectDrink} />
                             ))}
                         </div>
                     </section>
@@ -274,8 +302,9 @@ export default function Menu() {
                 )}
             </main>
 
+
             {showModal && (
-                <ModalCart setShowModal={setShowModal} />
+                <ModalCart setShowModal={setShowModal} selectSize={selectedSize} sizePrice={sizePrice} selectedPizzaFlavors={selectedPizzaFlavors} selectedDrinks={selectedDrinks} />
             )}
 
         </div>

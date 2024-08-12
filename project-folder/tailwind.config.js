@@ -17,18 +17,19 @@ export default {
       colors: {
         'primary-red': '#EA1E1E',
         'highlight-red': '#FF4672',
-        'box-background': '#261C26',
         'border-red': '#EA1E1E25',
         'box-green': '#0FA35360',
         'border-green': '#0FA353',
+        'box-background': '#2E252E',
         'box-background-darker': '#171117',
-        'fade-modal': '#08061790'
+        'fade-modal': '#080617e6'
       },
 
       fontFamily: {
         'karantina': ['Karantina', 'sans-serif'],
         'inter': ['Inter', 'sans-serif'],
         'imbue': ['Imbue', 'sans-serif'],
+        'inika': ['Inika', 'sans-serif'],
       },
 
       fontSize: {
@@ -47,13 +48,16 @@ export default {
         '550': '34.375rem',
         '600': '37.5rem',
         '700': '43rem',
+        '800': '50rem',
       },
 
       height: {
         '200': '12.5rem',
+        '250': '15.625rem',
         '400': '25rem',
         '450': '28.125rem',
         '500': '31.25rem',
+        '600': '37.5rem',
       },
 
       padding: {
@@ -61,7 +65,7 @@ export default {
       },
 
       boxShadow: {
-        'red': '0 0 50px 0 #EA1E1E70',
+        'red': '0 0 50px 0 #EA1E1E80',
       },
     },
   },
