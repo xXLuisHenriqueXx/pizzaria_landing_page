@@ -1,4 +1,4 @@
-# DevPizza
+# DevPizza 🍕
 Este projeto consiste em um cardápio online para uma pizzaria fictícia, que permite aos usuários personalizar seus pedidos de forma intuitiva e prática. Os clientes podem selecionar o tamanho da pizza, escolher sabores de acordo com o tamanho selecionado, adicionar bebidas, e enviar o pedido diretamente para o WhatsApp da pizzaria.
 
 ## Funcionalidades
@@ -14,22 +14,22 @@ Este projeto consiste em um cardápio online para uma pizzaria fictícia, que pe
 - TailwindCSS: Framework CSS utilitário para estilização.
 
 # Como Executar o Projeto
-- Clone o repositório com os comandos abaixo:
-```
+1. Clone o repositório com os comandos abaixo:
+```bash
 git clone https://github.com/seu-usuario/nome-do-repositorio.git
 cd nome-do-repositorio
 ```
 
-- Instale as dependências com o comando abaixo:
-```
+2. Instale as dependências com o comando abaixo:
+```bash
 npm install
 ```
 
-- Execute o servidor de desenvolvimento com o comando abaixo:
-```
+3. Execute o servidor de desenvolvimento com o comando abaixo:
+```bash
 npm run dev
 ```
-- Acesse o projeto em http://localhost:3000 no navegador.
+4. Acesse o projeto em http://localhost:3000 no navegador.
 
 ## Como Usar
 - Selecione o Tamanho da Pizza: Escolha entre as opções disponíveis.
