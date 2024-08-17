@@ -29,7 +29,7 @@ npm install
 ```
 npm run dev
 ```
-Acesse o projeto em http://localhost:3000 no navegador.
+- Acesse o projeto em http://localhost:3000 no navegador.
 
 ## Como Usar
 - Selecione o Tamanho da Pizza: Escolha entre as opções disponíveis.
