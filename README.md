@@ -37,6 +37,12 @@ npm run dev
 - **Adicione Bebidas**: Selecione as bebidas desejadas.
 - **Finalize o Pedido**: Visualize o carrinho e envie o pedido via WhatsApp.
 
+## Estrutura do Projeto
+- src/
+  - assets/: Imagens, ícones e outros recursos estáticos.
+  - components/: Componentes reutilizáveis da aplicação.
+  - screens/: Telas do aplicativo, como Home, Mapa, e Lista de Locais.
+
 ---
 
 # Contribuição
