@@ -13,7 +13,7 @@ Este projeto consiste em um cardápio online para uma pizzaria fictícia, que pe
 - **Vite**: Ferramenta de build e desenvolvimento para projetos front-end.
 - **TailwindCSS**: Framework CSS utilitário para estilização.
 
-# Como Executar o Projeto
+## Como Executar o Projeto
 1. Clone o repositório com os comandos abaixo:
 ```bash
 git clone https://github.com/seu-usuario/nome-do-repositorio.git
