@@ -37,6 +37,8 @@ npm run dev
 - **Adicione Bebidas**: Selecione as bebidas desejadas.
 - **Finalize o Pedido**: Visualize o carrinho e envie o pedido via WhatsApp.
 
+---
+
 # Contribuição
 - Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
 
