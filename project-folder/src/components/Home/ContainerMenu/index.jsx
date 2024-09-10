@@ -17,7 +17,7 @@ export default function ContainerMenu() {
             2xl:w-700 2xl:h-400
             flex flex-col justify-center 
             bg-box-background shadow-red
-            rounded-lg
+            rounded-md
         ">
             <h2 className="
                 text-sm text-center font-inter font-bold text-white
@@ -37,7 +37,7 @@ export default function ContainerMenu() {
                 lg:h-20
                 xl:h-24
                 flex items-center justify-center
-                bg-primary-red rounded-lg
+                bg-primary-red rounded-md
                 text-white text-md font-inter font-bold
                 lg:text-base
                 xl:text-xl

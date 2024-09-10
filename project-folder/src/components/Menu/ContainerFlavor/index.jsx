@@ -12,10 +12,10 @@ function ContainerFlavor({ pizza, handleSelectFlavor }) {
                 xl:gap-10
                 xl:h-44
                 2xl:w-550 2xl:h-200
-                bg-box-background rounded-lg
+                bg-box-background rounded-md
             ">
             <img
-            className="w-24 h-24 rounded-lg object-cover
+            className="w-24 h-24 rounded-md object-cover
                 xl:w-28 xl:h-28
                 2xl:w-40 2xl:h-40"
             src={pizza.imgSrc}

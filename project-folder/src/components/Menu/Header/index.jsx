@@ -17,7 +17,7 @@ function Header() {
                 alt="Logo da pizzaria DevPizza"
             />
 
-            <div className="mt-2 p-1 bg-box-green border-2 border-border-green rounded-lg">
+            <div className="mt-2 p-1 bg-box-green border-2 border-border-green rounded-md">
                 <h2 className="
                     text-white text-xs font-inter font-bold
                     lg:text-sm

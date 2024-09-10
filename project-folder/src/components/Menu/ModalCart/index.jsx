@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { IoMdRemove } from "react-icons/io";
 
-function ModalCart({ setShowModal, selectSize, sizePrice, selectedPizzaFlavors, selectedDrinks }) {
+function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizza, sizePrice, selectedPizzaFlavors, setSelectedPizzaFlavors, selectedDrinks, setSelectedDrinks }) {
+  const [price, setPrice] = useState(0);
+
   const sizeTitle = (size) => {
     if (selectSize === 1) {
       return "Pequena"
@@ -31,7 +34,7 @@ function ModalCart({ setShowModal, selectSize, sizePrice, selectedPizzaFlavors, 
       const size = sizeTitle(selectSize);
 
       const message = `Pedido finalizado!\n\nTamanho da pizza: ${size}\nSabores: ${pizzaFlavors}\nBebidas: ${drinks}\nTotal a pagar: R$ ${totalPrice.toFixed(2)}\nEndereço de entrega: ${address}`
-      
+
       const phoneNumber = import.meta.env.VITE_PHONE;
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
@@ -41,6 +44,39 @@ function ModalCart({ setShowModal, selectSize, sizePrice, selectedPizzaFlavors, 
       setShowModal(false);
     }
   }
+
+  const removePizzaSize = () => {
+    setSelectSize(0);
+    setSelectedPizzaFlavors([]);
+    setShowPizza(false);
+    calculatePrice();
+  }
+
+  const removePizzaFlavor = (index) => {
+    setSelectedPizzaFlavors(prev => prev.filter((_, i) => i !== index));
+  }
+
+  const removeDrink = (index) => {
+    setSelectedDrinks(prevDrinks => prevDrinks.filter((_, i) => i !== index));
+    calculatePrice();
+  }
+
+  const calculatePrice = () => {
+    let totalPrice;
+
+    if (selectSize === 0) totalPrice = 0;
+    else totalPrice = sizePrice;
+
+    selectedDrinks.forEach(drink => {
+      totalPrice += drink.price * drink.quantity;
+    });
+
+    setPrice(totalPrice);
+  }
+
+  useEffect(() => {
+    calculatePrice();
+  }, [selectSize, selectedPizzaFlavors, selectedDrinks]);
 
   return (
     <div
@@ -54,7 +90,7 @@ function ModalCart({ setShowModal, selectSize, sizePrice, selectedPizzaFlavors, 
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
         w-[90%] h-600 px-2 py-5
         lg:w-800 lg:px-5
-        bg-box-background rounded-lg shadow-red
+        bg-box-background rounded-md shadow-red
         "
       >
         <div className="
@@ -87,7 +123,13 @@ function ModalCart({ setShowModal, selectSize, sizePrice, selectedPizzaFlavors, 
                   Tamanho selecionado:
                 </p>
                 {selectSize ? (
-                  <p className="font-inika text-white text-sm lg:text-lg">{sizeTitle(selectSize)}</p>
+                  <span className='flex flex-row justify-between items-center w-full'>
+                    <p className="font-inika text-white text-sm lg:text-lg">{sizeTitle(selectSize)}</p>
+                    <IoMdRemove
+                      className='text-white text-lg lg:text-xl cursor-pointer'
+                      onClick={removePizzaSize}
+                    />
+                  </span>
                 ) : (
                   <p className="font-inika text-white text-sm lg:text-lg">Nenhum tamanho selecionado</p>
                 )}
@@ -99,8 +141,18 @@ function ModalCart({ setShowModal, selectSize, sizePrice, selectedPizzaFlavors, 
                   Sabores selecionados:
                 </p>
                 {selectedPizzaFlavors.length > 0 ? (
-                  selectedPizzaFlavors.map((flavor) => (
-                    <p key={flavor.id} className="font-inika text-white text-sm lg:text-lg">{flavor.title}</p>
+                  selectedPizzaFlavors.map((flavor, index) => (
+                    <span key={index}
+                      className='flex flex-row justify-between items-center w-full'
+                    >
+                      <p className="font-inika text-white text-sm lg:text-lg">{flavor.title}</p>
+                      <IoMdRemove
+                        className='text-white text-lg lg:text-xl cursor-pointer'
+                        onClick={() => {
+                          removePizzaFlavor(index);
+                        }}
+                      />
+                    </span>
                   ))
                 ) : (
                   <p className="font-inika text-white text-sm lg:text-lg">Nenhum sabor selecionado...</p>
@@ -123,11 +175,21 @@ function ModalCart({ setShowModal, selectSize, sizePrice, selectedPizzaFlavors, 
                 overflow-y-auto
               ">
                 {selectedDrinks.length > 0 ? (
-                  selectedDrinks.map((drink) => (
-                    <div key={drink._id} className="text-center mb-2">
-                      <p className="font-inter font-bold text-white text-base lg:text-lg">{drink.quantity}x {drink.title}</p>
-                      <p className="font-inika text-white text-sm lg:text-base">R$ {drink.price.toFixed(2)}</p>
-                    </div>
+                  selectedDrinks.map((drink, index) => (
+                    <span key={index}
+                      className='flex flex-row justify-between items-center w-full'
+                    >
+                      <div key={drink._id} className="text-center mb-2">
+                        <p className="font-inter font-bold text-white text-base lg:text-lg">{drink.quantity}x {drink.title}</p>
+                        <p className="font-inika text-white text-sm lg:text-base">R$ {drink.price.toFixed(2)}</p>
+                      </div>
+                      <IoMdRemove
+                        className='text-white text-lg lg:text-xl cursor-pointer'
+                        onClick={() => {
+                          removeDrink(index);
+                        }}
+                      />
+                    </span>
                   ))
                 ) : (
                   <p className="font-inter text-white text-sm lg:text-base">Nenhuma bebida selecionada...</p>
@@ -141,13 +203,13 @@ function ModalCart({ setShowModal, selectSize, sizePrice, selectedPizzaFlavors, 
           ">
             <div className="flex flex-row items-center">
               <p className="font-inter font-bold text-white text-sm md:text-lg mr-1">Total a pagar:</p>
-              <p className="font-inika text-white text-sm md:text-lg">R$ {(sizePrice + selectedDrinks.reduce((acc, drink) => acc + drink.price, 0)).toFixed(2)}</p>
+              <p className="font-inika text-white text-sm md:text-lg">R$ {price.toFixed(2)}</p>
             </div>
 
             <button
               onClick={handleFinalizeOrder}
               className="
-                bg-primary-red text-white font-inter font-bold text-sm px-4 py-2 rounded-lg
+                bg-primary-red text-white font-inter font-bold text-sm px-4 py-2 rounded-md
                 md:text-lg
                 hover:bg-highlight-red hover:shadow-red cursor-pointer transition duration-200
             ">
@@ -160,4 +222,4 @@ function ModalCart({ setShowModal, selectSize, sizePrice, selectedPizzaFlavors, 
   )
 }
 
-export default ModalCart
+export default ModalCart;

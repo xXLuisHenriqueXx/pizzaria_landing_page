@@ -172,7 +172,7 @@ const drinks = [
     }
 ];
 
-const whiteInfoText = "mt-4 text-white text-sm lg:text-lg font-inter font-semibold text-center";
+const whiteInfoText = "mt-4 text-white text-sm font-inter font-semibold text-center";
 const pizzaDrinkText = "text-white text-base font-inter font-bold lg:text-lg 2xl:text-2xl hover:text-primary-red cursor-pointer duration-200"
 
 export default function Menu() {
@@ -304,7 +304,7 @@ export default function Menu() {
 
 
             {showModal && (
-                <ModalCart setShowModal={setShowModal} selectSize={selectedSize} sizePrice={sizePrice} selectedPizzaFlavors={selectedPizzaFlavors} selectedDrinks={selectedDrinks} />
+                <ModalCart setShowModal={setShowModal} selectSize={selectedSize} setSelectSize={setSelectedSize} sizePrice={sizePrice} setShowPizzas={setShowPizzas} selectedPizzaFlavors={selectedPizzaFlavors} setSelectedPizzaFlavors={setSelectedPizzaFlavors} selectedDrinks={selectedDrinks} setSelectedDrinks={setSelectedDrinks} />
             )}
 
         </div>
