@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { IoMdRemove } from "react-icons/io";
 
-function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizza, sizePrice, selectedPizzaFlavors, setSelectedPizzaFlavors, selectedDrinks, setSelectedDrinks }) {
+const iconStyle = "text-white text-lg cursor-pointer border border-primary-red rounded hover:text-primary-red transition duration-200";
+
+function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, sizePrice, selectedPizzaFlavors, setSelectedPizzaFlavors, selectedDrinks, setSelectedDrinks }) {
   const [price, setPrice] = useState(0);
 
   const sizeTitle = (size) => {
@@ -48,7 +50,7 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizza, size
   const removePizzaSize = () => {
     setSelectSize(0);
     setSelectedPizzaFlavors([]);
-    setShowPizza(false);
+    setShowPizzas(false);
     calculatePrice();
   }
 
@@ -89,7 +91,7 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizza, size
         onClick={(e) => e.stopPropagation()}
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
         w-[90%] h-600 px-2 py-5
-        lg:w-800 lg:px-5
+        lg:w-800 lg:px-5 
         bg-box-background rounded-md shadow-red
         "
       >
@@ -126,7 +128,7 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizza, size
                   <span className='flex flex-row justify-between items-center w-full'>
                     <p className="font-inika text-white text-sm lg:text-lg">{sizeTitle(selectSize)}</p>
                     <IoMdRemove
-                      className='text-white text-lg lg:text-xl cursor-pointer'
+                      className={iconStyle}
                       onClick={removePizzaSize}
                     />
                   </span>
@@ -147,7 +149,7 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizza, size
                     >
                       <p className="font-inika text-white text-sm lg:text-lg">{flavor.title}</p>
                       <IoMdRemove
-                        className='text-white text-lg lg:text-xl cursor-pointer'
+                        className={iconStyle}
                         onClick={() => {
                           removePizzaFlavor(index);
                         }}
@@ -177,14 +179,14 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizza, size
                 {selectedDrinks.length > 0 ? (
                   selectedDrinks.map((drink, index) => (
                     <span key={index}
-                      className='flex flex-row justify-between items-center w-full'
+                      className='flex flex-row justify-between w-full'
                     >
-                      <div key={drink._id} className="text-center mb-2">
-                        <p className="font-inter font-bold text-white text-base lg:text-lg">{drink.quantity}x {drink.title}</p>
-                        <p className="font-inika text-white text-sm lg:text-base">R$ {drink.price.toFixed(2)}</p>
+                      <div key={drink._id} className="text-center mb-2 mr-4">
+                        <p className="font-inter font-bold text-white text-base">{drink.quantity}x {drink.title}</p>
+                        <p className="font-inika text-white text-sm">R$ {drink.price.toFixed(2)}</p>
                       </div>
                       <IoMdRemove
-                        className='text-white text-lg lg:text-xl cursor-pointer'
+                        className={`${iconStyle} mt-1`}
                         onClick={() => {
                           removeDrink(index);
                         }}

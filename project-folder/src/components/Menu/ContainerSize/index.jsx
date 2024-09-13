@@ -12,30 +12,32 @@ function ContainerSize({ size, setSelectedSize, setSizePrice}) {
         w-full h-36 mt-4
         md:w-2/3 md:mx-auto
         lg:w-60 lg:h-72
-        xl:w-80 xl:h-450
+        xl:w-80 xl:h-96
+        2xl:h-450
         flex items-center justify-center gap-10
         lg:flex-col lg:gap-2
-        xl:gap-6
+        xl:gap-4
         bg-box-background rounded-md
         hover:shadow-red cursor-pointer transition duration-200
     ">
         <img
         className="
             w-24 h-24
-            xl:w-40 xl:h-40
+            xl:w-32 xl:h-32
+            2xl:w-40 2xl:h-40
             p-2 bg-box-background-darker rounded-md
-            xl:p-4"
+            2xl:p-4"
         src={size.imgSrc}
         alt={size.imgAlt}
         />
 
         <div>
             <div>
-                <h1 className="text-primary-red text-2xl xl:text-5xl font-imbue font-bold lg:text-center">
+                <h1 className="text-primary-red text-2xl xl:text-4xl 2xl:text-5xl font-imbue font-bold lg:text-center">
                     {size.title}
                 </h1>
             </div>
-            <div className="text-white text-sm xl:text-2xl">
+            <div className="text-white text-sm xl:text-lg 2xl:text-2xl">
                 <li>{size.hungry}</li>
                 <li>{size.slices}</li>
                 <li>{size.size}</li>

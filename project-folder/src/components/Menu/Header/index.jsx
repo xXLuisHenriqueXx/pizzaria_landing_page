@@ -6,13 +6,13 @@ function Header() {
         <header className="
             flex flex-col items-center justify-center
             w-full h-52
-            lg:h-80
+            2xl:h-80
             bg-header bg-cover bg-center bg-no-repeat
         ">
             <img
                 className="
                     w-32 h-32
-                    lg:w-48 lg:h-48"
+                    2xl:w-48 2xl:h-48"
                 src={Logo}
                 alt="Logo da pizzaria DevPizza"
             />
@@ -21,10 +21,9 @@ function Header() {
                 <h2 className="
                     text-white text-xs font-inter font-bold
                     lg:text-sm
-                    xl:text-base
                     2xl:text-lg
                 ">
-                    Seg - Sex / 18h - 22h
+                    Seg - Sex <span className='text-border-green'>|</span> 18h - 22h
                 </h2>
             </div>
 

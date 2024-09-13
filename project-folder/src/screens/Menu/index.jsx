@@ -20,7 +20,7 @@ import guarana from "../../assets/drinks/guarana_lata.jpeg";
 import sucoLaranja from "../../assets/drinks/suco_laranja.jpg";
 import agua from "../../assets/drinks/agua.jpg";
 import schweppesZero from "../../assets/drinks/schweppes_zero_lata.png"
-import chaGelado  from "../../assets/drinks/cha_gelado.jpeg";
+import chaGelado from "../../assets/drinks/cha_gelado.jpeg";
 
 const pizzaSizes = [
     {
@@ -173,7 +173,7 @@ const drinks = [
 ];
 
 const whiteInfoText = "mt-4 text-white text-sm font-inter font-semibold text-center";
-const pizzaDrinkText = "text-white text-base font-inter font-bold lg:text-lg 2xl:text-2xl hover:text-primary-red cursor-pointer duration-200"
+const pizzaDrinkText = "text-base font-inter font-bold lg:text-lg 2xl:text-2xl hover:text-primary-red cursor-pointer duration-200"
 
 export default function Menu() {
     const [selectedSize, setSelectedSize] = useState(0);
@@ -182,6 +182,7 @@ export default function Menu() {
     const [selectedPizzaFlavors, setSelectedPizzaFlavors] = useState([]);
     const [selectedDrinks, setSelectedDrinks] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [screen, setScreen] = useState('pizza');
 
     const handleSelectFlavor = (pizza) => {
         if (selectedPizzaFlavors.includes(pizza)) {
@@ -201,7 +202,7 @@ export default function Menu() {
         const existingDrink = selectedDrinks.find(d => d._id === drink._id);
 
         if (existingDrink) {
-            const updatedDrinks = selectedDrinks.map(d => 
+            const updatedDrinks = selectedDrinks.map(d =>
                 d._id === drink._id ? { ...d, quantity: d.quantity + 1 } : d
             );
             setSelectedDrinks(updatedDrinks);
@@ -215,14 +216,14 @@ export default function Menu() {
             overflowY: "scroll",
             scrollbarWidth: "none",
             msOverflowStyle: 'none',
-        }} 
-        className="
+        }}
+            className="
             flex flex-col
             w-full min-h-screen pb-4
             bg-main bg-no-repeat bg-cover bg-center
         ">
             <Navbar setShowModal={setShowModal} screen={'menu'} />
-            
+
             <Header />
 
             <main className="
@@ -235,17 +236,37 @@ export default function Menu() {
                     flex items-center justify-around
                     border-b-2 border-border-red
                 ">
-                    <h2 className={pizzaDrinkText}
-                    onClick={() => setShowPizzas(true)}
-                    >
-                        Pizzas
-                    </h2>
+                    {screen === 'pizza' ? (
+                        <h2 className={`${pizzaDrinkText} text-primary-red bg-box-background px-8 rounded-md`}
+                        >
+                            Pizzas
+                        </h2>
+                    ) : (
+                        <h2 className={`${pizzaDrinkText} text-white`}
+                            onClick={() => {
+                                setScreen('pizza');
+                                setShowPizzas(true);
+                            }}
+                        >
+                            Pizzas
+                        </h2>
+                    )}
 
-                    <h2 className={pizzaDrinkText}
-                    onClick={() => setShowPizzas(false)}
-                    >
-                        Bebidas
-                    </h2>
+                    {screen === 'drink' ? (
+                        <h2 className={`${pizzaDrinkText} text-primary-red bg-box-background px-8 rounded-md`}
+                        >
+                            Bebidas
+                        </h2>
+                    ) : (
+                        <h2 className={`${pizzaDrinkText} text-white`}
+                            onClick={() => {
+                                setScreen('drink');
+                                setShowPizzas(false);
+                            }}
+                        >
+                            Bebidas
+                        </h2>
+                    )}
                 </section>
 
                 {showPizzas && selectedSize === 0 && (
@@ -254,10 +275,10 @@ export default function Menu() {
                         >
                             Escolha a pizza do tamanho da sua fome!
                         </h2>
-                        
+
                         <div className="lg:flex lg:items-center lg:justify-around 2xl:w-[80%] 2xl:mx-auto">
                             {pizzaSizes.map((size, index) => (
-                                <ContainerSize size={size} key={size._id} setSelectedSize={setSelectedSize} setSizePrice={setSizePrice}/>
+                                <ContainerSize size={size} key={size._id} setSelectedSize={setSelectedSize} setSizePrice={setSizePrice} />
                             ))}
                         </div>
                     </section>
@@ -269,13 +290,13 @@ export default function Menu() {
                         >
                             {selectedSize === 1 ? (
                                 `Você pode escolher até ${selectedSize} sabor!`
-                            ): (
+                            ) : (
                                 `Você pode escolher até ${selectedSize} sabores!`
                             )}
                         </h2>
 
                         <div
-                        className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 md:place-items-center">
+                            className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 md:place-items-center">
                             {pizzaFlavors.map((pizza, index) => (
                                 <ContainerFlavor pizza={pizza} key={pizza._id} handleSelectFlavor={handleSelectFlavor} />
                             ))}
@@ -292,13 +313,13 @@ export default function Menu() {
                         </h2>
 
                         <div
-                        className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 md:place-items-center">
+                            className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 md:place-items-center">
                             {drinks.map((drink, index) => (
                                 <ContainerDrinks drink={drink} key={drink._id} handleSelectDrink={handleSelectDrink} />
                             ))}
                         </div>
                     </section>
-                
+
                 )}
             </main>
 
