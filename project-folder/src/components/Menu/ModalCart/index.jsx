@@ -1,12 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { IoMdRemove } from "react-icons/io";
+import { tv } from 'tailwind-variants';
 
-const iconStyle = "text-white text-lg cursor-pointer border border-primary-red rounded hover:text-primary-red transition duration-200";
+const card = tv({
+  slots: {
+    container: 'fixed w-full min-h-screen bg-fade-modal z-50',
+    containerModal: 'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] h-600 px-2 py-5 lg:w-800 lg:px-5  bg-box-background rounded-md shadow-red',
+    containerModalInternalTitle: 'flex flex-1 flex-col justify-center items-center',
+    containerModalInternalContent: 'flex flex-1 flex-col justify-start items-center w-full h-auto lg:flex-row',
+    containerContentPizza: 'w-full h-200 flex flex-col justify-start items-center py-2 border-t-2 border-b-2 border-border-red lg:h-450 lg:border-r-2',
+    containerContentDrink: 'w-full h-250 flex flex-col justify-start items-center py-2 border-t-2 border-b-2 border-border-red lg:h-450',
+    modalTitle: 'font-imbue text-3xl lg:text-4xl text-primary-red mb-4',
+    contentTitle: 'font-inter font-bold text-2xl lg:text-3xl text-primary-red lg:mb-2',
+    smallContentText: 'font-inika text-white text-sm lg:text-lg',
+    flexBoxPizza: 'flex flex-1 flex-col justify-start items-center',
+    boxTitlePizza: 'font-inter font-bold text-white text-sm lg:text-lg',
+    spanBoxPizza: 'flex flex-row justify-between items-center w-full',
+    icon: 'text-white text-lg cursor-pointer border border-primary-red rounded hover:text-primary-red transition duration-200'
+  }
+});
+
+const { container, containerModal, containerModalInternalTitle, containerModalInternalContent, containerContentPizza, containerContentDrink, modalTitle, contentTitle, smallContentText, flexBoxPizza, boxTitlePizza, spanBoxPizza, icon } = card();
 
 function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, sizePrice, selectedPizzaFlavors, setSelectedPizzaFlavors, selectedDrinks, setSelectedDrinks }) {
   const [price, setPrice] = useState(0);
 
-  const sizeTitle = (size) => {
+  const sizeTitle = () => {
     if (selectSize === 1) {
       return "Pequena"
     } else if (selectSize === 3) {
@@ -81,75 +100,48 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
   }, [selectSize, selectedPizzaFlavors, selectedDrinks]);
 
   return (
-    <div
+    <div className={container()}
       onClick={() => setShowModal(false)}
-      className="
-      fixed w-full min-h-screen
-      bg-fade-modal z-50
-    ">
-      <div
+    >
+      <div className={containerModal()}
         onClick={(e) => e.stopPropagation()}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-        w-[90%] h-600 px-2 py-5
-        lg:w-800 lg:px-5 
-        bg-box-background rounded-md shadow-red
-        "
       >
-        <div className="
-          flex flex-1 flex-col justify-center items-center
-        ">
-          <h1 className="
-            font-imbue text-3xl lg:text-4xl text-primary-red mb-4
-          ">
+        <div className={containerModalInternalTitle()}>
+          <h1 className={modalTitle()}>
             SEU CARRINHO
           </h1>
 
-          <div className="
-            flex flex-1 flex-col justify-start items-center w-full h-auto
-            lg:flex-row
-          ">
-            <div className="
-              w-full h-200 flex flex-col justify-start items-center py-2
-              border-t-2 border-b-2 border-border-red 
-              lg:h-450 lg:border-r-2
-            ">
-              <h1 className="
-                font-inter font-bold text-2xl lg:text-3xl text-primary-red lg:mb-2
-              ">
+          <div className={containerModalInternalContent()}>
+            <div className={containerContentPizza()}>
+              <h1 className={contentTitle()}>
                 PIZZAS
               </h1>
-              <div className="
-                flex flex-1 flex-col justify-start items-center
-              ">
-                <p className="font-inter font-bold text-white text-sm lg:text-lg">
+              <div className={flexBoxPizza()}>
+                <p className={boxTitlePizza()}>
                   Tamanho selecionado:
                 </p>
                 {selectSize ? (
-                  <span className='flex flex-row justify-between items-center w-full'>
-                    <p className="font-inika text-white text-sm lg:text-lg">{sizeTitle(selectSize)}</p>
-                    <IoMdRemove
-                      className={iconStyle}
+                  <span className={spanBoxPizza()}>
+                    <p className={smallContentText()}>{sizeTitle()}</p>
+                    <IoMdRemove className={icon()}
                       onClick={removePizzaSize}
                     />
                   </span>
                 ) : (
-                  <p className="font-inika text-white text-sm lg:text-lg">Nenhum tamanho selecionado</p>
+                  <p className={smallContentText()}>Nenhum tamanho selecionado</p>
                 )}
               </div>
-              <div className="
-                flex flex-1 flex-col justify-start items-center
-              ">
-                <p className="font-inter font-bold text-white text-sm lg:text-lg">
+              <div className={flexBoxPizza()}>
+                <p className={boxTitlePizza()}>
                   Sabores selecionados:
                 </p>
                 {selectedPizzaFlavors.length > 0 ? (
                   selectedPizzaFlavors.map((flavor, index) => (
                     <span key={index}
-                      className='flex flex-row justify-between items-center w-full'
+                      className={spanBoxPizza()}
                     >
-                      <p className="font-inika text-white text-sm lg:text-lg">{flavor.title}</p>
-                      <IoMdRemove
-                        className={iconStyle}
+                      <p className={smallContentText()}>{flavor.title}</p>
+                      <IoMdRemove className={icon()}
                         onClick={() => {
                           removePizzaFlavor(index);
                         }}
@@ -157,19 +149,13 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
                     </span>
                   ))
                 ) : (
-                  <p className="font-inika text-white text-sm lg:text-lg">Nenhum sabor selecionado...</p>
+                  <p className={smallContentText()}>Nenhum sabor selecionado...</p>
                 )}
               </div>
             </div>
 
-            <div className="
-              w-full h-250 flex flex-col justify-start items-center py-2
-              border-t-2 border-b-2 border-border-red 
-              lg:h-450
-            ">
-              <h1 className="
-                font-inter font-bold text-2xl lg:text-3xl text-primary-red lg:mb-2
-              ">
+            <div className={containerContentDrink()}>
+              <h1 className={contentTitle()}>
                 BEBIDAS
               </h1>
               <div className="
@@ -185,8 +171,7 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
                         <p className="font-inter font-bold text-white text-base">{drink.quantity}x {drink.title}</p>
                         <p className="font-inika text-white text-sm">R$ {drink.price.toFixed(2)}</p>
                       </div>
-                      <IoMdRemove
-                        className={`${iconStyle} mt-1`}
+                      <IoMdRemove className={icon()}
                         onClick={() => {
                           removeDrink(index);
                         }}

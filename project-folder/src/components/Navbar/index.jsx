@@ -33,19 +33,14 @@ function Navbar({ screen, setShowModal }) {
       ">
         { screen === 'home' ? (
           <Link to="/menu">
-            <BiFoodMenu
-              className={icon}
-            />
+            <BiFoodMenu className={icon} />
           </Link>
         ) : (
-          <BiCart
+          <BiCart className={icon}
             onClick={() => setShowModal(true)}
-            className={icon}
           />
         )}
-        <BiLogoWhatsapp
-          className={icon}
-        />
+        <BiLogoWhatsapp className={icon} />
       </div>
     </div>
   )
