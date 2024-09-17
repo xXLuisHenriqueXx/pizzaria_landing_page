@@ -3,13 +3,13 @@ import { tv } from 'tailwind-variants';
 
 const nav = tv({
     slots: {
-        container: 'w-full py-4 flex items-center justify-around border-b-2 border-border-red',
-        buttonText: 'text-base font-inter font-bold lg:text-lg 2xl:text-2xl cursor-pointer hover:text-primary-red duration-200'
+        container: 'flex items-center justify-around w-full py-4',
+        buttonText: 'px-12 py-1 text-base lg:text-lg 2xl:text-2xl font-inter font-bold uppercase cursor-pointer hover:text-primary-red duration-200'
     },
     variants: {
         button: {
             selected: {
-                buttonText: 'text-primary-red bg-box-background px-8 rounded-md',
+                buttonText: 'text-primary-red bg-box-background rounded-md',
             },
             notSelected: {
                 buttonText: 'text-white',
@@ -21,7 +21,7 @@ const nav = tv({
     }
 });
 
-const { container, buttonText } = nav({ button: screen === 'pizza' ? 'selected' : 'notSelected' });
+const { container, buttonText } = nav();
 
 export default function MenuNavbar({ setShowPizzas }) {
     const [screen, setScreen] = useState('pizza');

@@ -1,12 +1,13 @@
 import React from 'react';
 import Navbar from "../../Navbar";
 import Header from "../Header";
+import ModalCart from '../ModalCart';
 import { tv } from 'tailwind-variants';
 
 const card = tv({
     slots: {
-        container: 'flex flex-col w-full min-h-screen pb-4 bg-main bg-no-repeat bg-cover bg-center',
-        main: 'px-5 md:px-10 xl:px-20'
+        container: 'flex flex-col w-full min-h-screen pb-4 bg-box-background-darker',
+        main: 'px-4 md:px-8 xl:px-16'
     }
 });
 

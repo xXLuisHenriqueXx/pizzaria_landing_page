@@ -4,7 +4,7 @@ import { tv } from 'tailwind-variants';
 
 const card = tv({
   slots: {
-    container: 'fixed w-full min-h-screen bg-fade-modal z-50',
+    container: 'fixed w-full min-h-screen bg-fade-modal z-[99]',
     containerModal: 'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] h-600 px-2 py-5 lg:w-800 lg:px-5  bg-box-background rounded-md shadow-red',
     containerModalInternalTitle: 'flex flex-1 flex-col justify-center items-center',
     containerModalInternalContent: 'flex flex-1 flex-col justify-start items-center w-full h-auto lg:flex-row',

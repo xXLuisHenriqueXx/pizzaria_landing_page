@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ModalCart from '../ModalCart'
+import ModalCart from '../ModalCart';
 
 import ContainerFlavor from "./ContainerFlavor";
 import ContainerDrinks from "./ContainerDrinks";
@@ -20,6 +20,7 @@ import sucoLaranja from "../../../assets/drinks/suco_laranja.jpg";
 import agua from "../../../assets/drinks/agua.jpg";
 import schweppesZero from "../../../assets/drinks/schweppes_zero_lata.png"
 import chaGelado from "../../../assets/drinks/cha_gelado.jpeg";
+import { tv } from 'tailwind-variants';
 
 const pizzaSizes = [
     {
@@ -171,50 +172,26 @@ const drinks = [
     }
 ];
 
-const whiteInfoText = "mt-4 text-white text-sm font-inter font-semibold text-center";
-
-export default function Render({ showPizzas, setShowPizzas, showModal, setShowModal }) {
-    const [selectedSize, setSelectedSize] = useState(0);
-    const [sizePrice, setSizePrice] = useState(0);
-    const [selectedPizzaFlavors, setSelectedPizzaFlavors] = useState([]);
-    const [selectedDrinks, setSelectedDrinks] = useState([]);
-
-    const handleSelectFlavor = (pizza) => {
-        if (selectedPizzaFlavors.includes(pizza)) {
-            alert("Você já selecionou esse sabor!");
-            return;
-        } else {
-            if (selectedPizzaFlavors.length < selectedSize) {
-                setSelectedPizzaFlavors([...selectedPizzaFlavors, pizza]);
-            } else {
-                alert(`Você só pode selecionar até ${selectedSize} sabores!`);
-                return;
-            }
-        }
+const card = tv({
+    slots: {
+        containerSize: 'lg:flex lg:items-center lg:justify-around 2xl:w-[80%] 2xl:mx-auto',
+        containerPizzaDrink: 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 md:place-items-center',
+        infoText: 'mt-4 text-sm font-inter font-semibold text-white text-center uppercase'
     }
+});
 
-    const handleSelectDrink = (drink) => {
-        const existingDrink = selectedDrinks.find(d => d._id === drink._id);
+const { containerSize, containerPizzaDrink, infoText } = card();
 
-        if (existingDrink) {
-            const updatedDrinks = selectedDrinks.map(d =>
-                d._id === drink._id ? { ...d, quantity: d.quantity + 1 } : d
-            );
-            setSelectedDrinks(updatedDrinks);
-        } else {
-            setSelectedDrinks([...selectedDrinks, { ...drink, quantity: 1 }]);
-        }
-    }
-
+export default function Render({ showPizzas, selectedSize, setSelectedSize, setSizePrice, handleSelectFlavor, handleSelectDrink }) {
     return (
-        <div>
+        <>
             {showPizzas && selectedSize === 0 && (
                 <section>
-                    <h2 className={whiteInfoText}>
+                    <h2 className={infoText()}>
                         Escolha a pizza do tamanho da sua fome!
                     </h2>
 
-                    <div className="lg:flex lg:items-center lg:justify-around 2xl:w-[80%] 2xl:mx-auto">
+                    <div className={containerSize()}>
                         {pizzaSizes.map((size, index) => (
                             <ContainerSize size={size} key={size._id} setSelectedSize={setSelectedSize} setSizePrice={setSizePrice} />
                         ))}
@@ -224,7 +201,7 @@ export default function Render({ showPizzas, setShowPizzas, showModal, setShowMo
 
             {showPizzas && selectedSize !== 0 && (
                 <section>
-                    <h2 className={whiteInfoText}>
+                    <h2 className={infoText()}>
                         {selectedSize === 1 ? (
                             `Você pode escolher até ${selectedSize} sabor!`
                         ) : (
@@ -232,8 +209,7 @@ export default function Render({ showPizzas, setShowPizzas, showModal, setShowMo
                         )}
                     </h2>
 
-                    <div
-                        className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 md:place-items-center">
+                    <div className={containerPizzaDrink()}>
                         {pizzaFlavors.map((pizza, index) => (
                             <ContainerFlavor pizza={pizza} key={pizza._id} handleSelectFlavor={handleSelectFlavor} />
                         ))}
@@ -243,25 +219,17 @@ export default function Render({ showPizzas, setShowPizzas, showModal, setShowMo
 
             {!showPizzas && (
                 <section>
-                    <h2 className="
-                        mt-4 text-white text-sm lg:text-lg font-inter font-semibold text-center
-                    ">
+                    <h2 className={infoText()}>
                         Conheça nossas bebidas!
                     </h2>
 
-                    <div
-                        className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 md:place-items-center">
+                    <div className={containerPizzaDrink()}>
                         {drinks.map((drink, index) => (
                             <ContainerDrinks drink={drink} key={drink._id} handleSelectDrink={handleSelectDrink} />
                         ))}
                     </div>
                 </section>
             )}
-
-            {/* {showModal && (
-                <ModalCart setShowModal={setShowModal} selectSize={selectedSize} setSelectSize={setSelectedSize} sizePrice={sizePrice} setShowPizzas={setShowPizzas} selectedPizzaFlavors={selectedPizzaFlavors} setSelectedPizzaFlavors={setSelectedPizzaFlavors} selectedDrinks={selectedDrinks} setSelectedDrinks={setSelectedDrinks} />
-            )} */}
-            {showModal && <div style={{ flex: 1, color: "white", zIndex: 60 }}>Modal Content Here</div>}
-        </div>
+        </>
     )
 }

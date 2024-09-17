@@ -4,9 +4,9 @@ import ContainerTextInfo from './ContainerTextInfo';
 
 const card = tv({
     slots: {
-        container: 'px-5 md:px-10 lg:mt-32 xl:pl-20 2xl:pl-42 2xl:mt-40',
-        title: 'text-8xl text-center font-karantina text-primary-red md:text-9xl lg:text-10xl lg:text-left xl:text-11xl 2xl:text-13xl',
-        normalText: 'text-2xl text-center font-inter text-white md:text-4xl lg:text-5xl lg:text-left xl:text-6xl 2xl:text-7xl'
+        container: 'lg:mt-32 2xl:mt-40',
+        title: 'text-8xl md:text-9xl lg:text-10xl xl:text-11xl 2xl:text-13xl text-center lg:text-left font-karantina text-primary-red',
+        normalText: 'text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl text-center lg:text-left font-inter text-white'
     }
 });
 
