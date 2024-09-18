@@ -4,23 +4,61 @@ import { tv } from 'tailwind-variants';
 
 const card = tv({
   slots: {
-    container: 'fixed w-full min-h-screen bg-fade-modal z-[99]',
-    containerModal: 'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] h-600 px-2 py-5 lg:w-800 lg:px-5  bg-box-background rounded-md shadow-red',
-    containerModalInternalTitle: 'flex flex-1 flex-col justify-center items-center',
-    containerModalInternalContent: 'flex flex-1 flex-col justify-start items-center w-full h-auto lg:flex-row',
-    containerContentPizza: 'w-full h-200 flex flex-col justify-start items-center py-2 border-t-2 border-b-2 border-border-red lg:h-450 lg:border-r-2',
-    containerContentDrink: 'w-full h-250 flex flex-col justify-start items-center py-2 border-t-2 border-b-2 border-border-red lg:h-450',
-    modalTitle: 'font-imbue text-3xl lg:text-4xl text-primary-red mb-4',
-    contentTitle: 'font-inter font-bold text-2xl lg:text-3xl text-primary-red lg:mb-2',
-    smallContentText: 'font-inika text-white text-sm lg:text-lg',
-    flexBoxPizza: 'flex flex-1 flex-col justify-start items-center',
-    boxTitlePizza: 'font-inter font-bold text-white text-sm lg:text-lg',
-    spanBoxPizza: 'flex flex-row justify-between items-center w-full',
-    icon: 'text-white text-lg cursor-pointer border border-primary-red rounded hover:text-primary-red transition duration-200'
+    container: 'w-full min-h-screen bg-fade-modal fixed z-[99]',
+    containerModal: ' w-[90%] h-600 px-2 py-5 lg:w-800 lg:px-5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-box-background rounded-md shadow-red',
+    containerModalInternal: 'flex flex-1 flex-col items-center',
+    containerContent: 'flex flex-col justify-start items-center w-full py-2 border-t-2 border-b-2 border-border-red lg:h-450',
+    modalTitle: 'mb-4 text-3xl lg:text-4xl font-imbue text-primary-red',
+    contentTitle: 'lg:mb-2 text-2xl lg:text-3xl font-inter font-bold text-primary-red',
+    smallContentText: 'text-sm lg:text-lg font-inika text-white',
+    flexBox: 'flex flex-1 flex-col justify-start items-center',
+    spanBox: 'flex flex-row justify-between w-full',
+    boxTitle: 'text-sm lg:text-lg font-inter font-bold text-white',
+    containerPriceFinalize: 'flex flex-row justify-between items-center w-full h-full px-1 py-4',
+    containerInternalPriceFinalize: 'flex flex-row items-center',
+    buttonFinalize: 'px-4 py-2 bg-primary-red hover:bg-highlight-red text-sm rounded-md md:text-lg font-inter font-bold text-white hover:shadow-red cursor-pointer duration-200',
+    icon: 'text-white text-lg cursor-pointer border border-primary-red rounded hover:text-primary-red transition duration-200',
+  },
+
+  variants: {
+    containerContent: {
+      pizza: {
+        containerContent: 'h-200 lg:border-r-2',
+      },
+      drink: {
+        containerContent: 'h-250',
+      }
+    },
+    containerModalInternal: {
+      title: {
+        containerModalInternal: 'justify-center'
+      },
+      content: {
+        containerModalInternal: 'justify-start w-full h-auto lg:flex-row'
+      }
+    },
+    flexBox: {
+      drinkFlex: {
+        flexBox: 'overflow-y-auto'
+      }
+    },
+    spanBox: {
+      pizza: {
+        spanBox: 'items-center'
+      },
+      drink: {
+        spanBox: 'mb-8'
+      }
+    },
+    boxTitle: {
+      price: {
+        boxTitle: 'mr-1'
+      }
+    }
   }
 });
 
-const { container, containerModal, containerModalInternalTitle, containerModalInternalContent, containerContentPizza, containerContentDrink, modalTitle, contentTitle, smallContentText, flexBoxPizza, boxTitlePizza, spanBoxPizza, icon } = card();
+const { container, containerModal, containerModalInternal, containerContent, modalTitle, contentTitle, smallContentText, flexBox, boxTitle, spanBox, containerPriceFinalize, containerInternalPriceFinalize, buttonFinalize, icon } = card();
 
 function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, sizePrice, selectedPizzaFlavors, setSelectedPizzaFlavors, selectedDrinks, setSelectedDrinks }) {
   const [price, setPrice] = useState(0);
@@ -106,22 +144,22 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
       <div className={containerModal()}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={containerModalInternalTitle()}>
+        <div className={containerModalInternal({ containerModalInternal: 'title' })}>
           <h1 className={modalTitle()}>
             SEU CARRINHO
           </h1>
 
-          <div className={containerModalInternalContent()}>
-            <div className={containerContentPizza()}>
+          <div className={containerModalInternal({ containerModalInternal: 'content' })}>
+            <div className={containerContent({ containerContent: 'pizza' })}>
               <h1 className={contentTitle()}>
                 PIZZAS
               </h1>
-              <div className={flexBoxPizza()}>
-                <p className={boxTitlePizza()}>
+              <div className={flexBox()}>
+                <p className={boxTitle()}>
                   Tamanho selecionado:
                 </p>
                 {selectSize ? (
-                  <span className={spanBoxPizza()}>
+                  <span className={spanBox({ spanBox: 'pizza' })}>
                     <p className={smallContentText()}>{sizeTitle()}</p>
                     <IoMdRemove className={icon()}
                       onClick={removePizzaSize}
@@ -131,15 +169,13 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
                   <p className={smallContentText()}>Nenhum tamanho selecionado</p>
                 )}
               </div>
-              <div className={flexBoxPizza()}>
-                <p className={boxTitlePizza()}>
+              <div className={flexBox()}>
+                <p className={boxTitle()}>
                   Sabores selecionados:
                 </p>
                 {selectedPizzaFlavors.length > 0 ? (
                   selectedPizzaFlavors.map((flavor, index) => (
-                    <span key={index}
-                      className={spanBoxPizza()}
-                    >
+                    <span key={index} className={spanBox({ spanBox: 'pizza' })}>
                       <p className={smallContentText()}>{flavor.title}</p>
                       <IoMdRemove className={icon()}
                         onClick={() => {
@@ -154,22 +190,17 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
               </div>
             </div>
 
-            <div className={containerContentDrink()}>
+            <div className={containerContent({ containerContent: 'drink' })}>
               <h1 className={contentTitle()}>
                 BEBIDAS
               </h1>
-              <div className="
-                flex flex-1 flex-col justify-start items-center
-                overflow-y-auto
-              ">
+              <div className={flexBox({ flexBox: 'drinkFlex' })}>
                 {selectedDrinks.length > 0 ? (
                   selectedDrinks.map((drink, index) => (
-                    <span key={index}
-                      className='flex flex-row justify-between w-full'
-                    >
-                      <div key={drink._id} className="text-center mb-2 mr-4">
-                        <p className="font-inter font-bold text-white text-base">{drink.quantity}x {drink.title}</p>
-                        <p className="font-inika text-white text-sm">R$ {drink.price.toFixed(2)}</p>
+                    <span key={index} className={spanBox({ spanBox: 'drink' })}>
+                      <div key={drink._id} className="mr-4">
+                        <p className={boxTitle()}>{drink.quantity}x {drink.title}</p>
+                        <p className={smallContentText()}>R$ {drink.price.toFixed(2)}</p>
                       </div>
                       <IoMdRemove className={icon()}
                         onClick={() => {
@@ -179,27 +210,21 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
                     </span>
                   ))
                 ) : (
-                  <p className="font-inter text-white text-sm lg:text-base">Nenhuma bebida selecionada...</p>
+                  <p className={smallContentText()}>Nenhuma bebida selecionada...</p>
                 )}
               </div>
             </div>
           </div>
 
-          <div className="
-            w-full h-full flex flex-row justify-between items-center px-1 py-4
-          ">
-            <div className="flex flex-row items-center">
-              <p className="font-inter font-bold text-white text-sm md:text-lg mr-1">Total a pagar:</p>
-              <p className="font-inika text-white text-sm md:text-lg">R$ {price.toFixed(2)}</p>
+          <div className={containerPriceFinalize()}>
+            <div className={containerInternalPriceFinalize()}>
+              <p className={boxTitle({ boxTitle: 'price' })}>Total a pagar:</p>
+              <p className={smallContentText()}>R$ {price.toFixed(2)}</p>
             </div>
 
-            <button
+            <button className={buttonFinalize()}
               onClick={handleFinalizeOrder}
-              className="
-                bg-primary-red text-white font-inter font-bold text-sm px-4 py-2 rounded-md
-                md:text-lg
-                hover:bg-highlight-red hover:shadow-red cursor-pointer transition duration-200
-            ">
+            >
               Finalizar pedido
             </button>
           </div>

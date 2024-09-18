@@ -39,16 +39,16 @@ export default function Menu() {
         }
     }
 
-    console.log('showModal', showModal)
-
     return (
         <>
+            {showModal && <ModalCart setShowModal={setShowModal} selectSize={selectedSize} setSelectSize={setSelectedSize} sizePrice={sizePrice} setShowPizzas={setShowPizzas} selectedPizzaFlavors={selectedPizzaFlavors} setSelectedPizzaFlavors={setSelectedPizzaFlavors} selectedDrinks={selectedDrinks} setSelectedDrinks={setSelectedDrinks} />}
+            
             <ContainerMain setShowModal={setShowModal}>
+
                 <MenuNavbar setShowPizzas={setShowPizzas} />
 
                 <Render showPizzas={showPizzas} selectedSize={selectedSize} setSelectedSize={setSelectedSize} setSizePrice={setSizePrice} handleSelectFlavor={handleSelectFlavor} handleSelectDrink={handleSelectDrink} />
             </ContainerMain>
-            {showModal && <ModalCart setShowModal={setShowModal} selectSize={selectedSize} setSelectSize={setSelectedSize} sizePrice={sizePrice} setShowPizzas={setShowPizzas} selectedPizzaFlavors={selectedPizzaFlavors} setSelectedPizzaFlavors={setSelectedPizzaFlavors} selectedDrinks={selectedDrinks} setSelectedDrinks={setSelectedDrinks} />}
         </>
     );
 }
