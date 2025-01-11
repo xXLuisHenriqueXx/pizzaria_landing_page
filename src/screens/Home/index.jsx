@@ -1,7 +1,8 @@
 import React from "react";
-import ContainerMenu from "../../components/Home/ContainerMenu";
+
 import ContainerMain from "../../components/Home/ContainerMain";
 import ContainerText from "../../components/Home/ContainerText";
+import ContainerMenu from "../../components/Home/ContainerMenu";
 
 export default function Home() {
     return (
@@ -10,5 +11,5 @@ export default function Home() {
 
             <ContainerMenu />
         </ContainerMain>
-    );
+    )
 }

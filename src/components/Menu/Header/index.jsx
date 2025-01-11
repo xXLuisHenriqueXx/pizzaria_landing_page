@@ -1,6 +1,7 @@
 import React from 'react'
-import Logo from "../../../assets/logo.png";
 import { tv } from 'tailwind-variants';
+
+import Logo from "../../../assets/logo.png";
 
 const card = tv({
     slots: {
@@ -15,14 +16,10 @@ const card = tv({
 
 const { container, overlay, logo, infoBox, normalText, spanGreen } = card();
 
-function Header() {
+export default function Header() {
     return (
         <header className={container()}>
-                <img
-                    className={logo()}
-                    src={Logo}
-                    alt="Logo da pizzaria DevPizza"
-                />
+                <img className={logo()} src={Logo} alt="Logo da pizzaria DevPizza" />
 
                 <div className={infoBox()}>
                     <h2 className={normalText()}>
@@ -37,5 +34,3 @@ function Header() {
         </header>
     )
 }
-
-export default Header

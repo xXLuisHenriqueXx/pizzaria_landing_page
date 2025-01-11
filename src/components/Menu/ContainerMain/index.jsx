@@ -1,8 +1,8 @@
 import React from 'react';
+import { tv } from 'tailwind-variants';
+
 import Navbar from "../../Navbar";
 import Header from "../Header";
-import ModalCart from '../ModalCart';
-import { tv } from 'tailwind-variants';
 
 const card = tv({
     slots: {

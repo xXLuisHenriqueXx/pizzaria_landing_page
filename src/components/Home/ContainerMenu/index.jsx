@@ -11,7 +11,7 @@ const card = tv({
     }
 });
 
-const { container, menuText, link, linkText, icon } = card();
+const { container, menuText, link, linkText } = card();
 
 export default function ContainerMenu() {
     return (

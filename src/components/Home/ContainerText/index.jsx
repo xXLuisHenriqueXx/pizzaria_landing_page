@@ -1,5 +1,6 @@
 import React from 'react';
 import { tv } from 'tailwind-variants';
+
 import ContainerTextInfo from './ContainerTextInfo';
 
 const card = tv({
@@ -19,6 +20,7 @@ export default function ContainerText() {
                 <h2 className={normalText()}>
                     Seja bem-vindo(a) ao
                 </h2>
+                
                 <h1 className={title()}>
                     DEVPIZZA
                 </h1>

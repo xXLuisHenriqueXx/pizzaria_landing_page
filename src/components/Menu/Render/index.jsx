@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import ModalCart from '../ModalCart';
+import React from 'react';
+import { tv } from 'tailwind-variants';
 
 import ContainerFlavor from "./ContainerFlavor";
 import ContainerDrinks from "./ContainerDrinks";
@@ -20,7 +20,6 @@ import sucoLaranja from "../../../assets/drinks/suco_laranja.jpg";
 import agua from "../../../assets/drinks/agua.jpg";
 import schweppesZero from "../../../assets/drinks/schweppes_zero_lata.png"
 import chaGelado from "../../../assets/drinks/cha_gelado.jpeg";
-import { tv } from 'tailwind-variants';
 
 const pizzaSizes = [
     {
@@ -183,6 +182,8 @@ const card = tv({
 const { containerSize, containerPizzaDrink, infoText } = card();
 
 export default function Render({ showPizzas, selectedSize, setSelectedSize, setSizePrice, handleSelectFlavor, handleSelectDrink }) {
+    const flavorsText = selectedSize === 1 ? `Você pode escolher até ${selectedSize} sabor!` : `Você pode escolher até ${selectedSize} sabores!`;
+
     return (
         <>
             {showPizzas && selectedSize === 0 && (
@@ -202,15 +203,11 @@ export default function Render({ showPizzas, selectedSize, setSelectedSize, setS
             {showPizzas && selectedSize !== 0 && (
                 <section>
                     <h2 className={infoText()}>
-                        {selectedSize === 1 ? (
-                            `Você pode escolher até ${selectedSize} sabor!`
-                        ) : (
-                            `Você pode escolher até ${selectedSize} sabores!`
-                        )}
+                        {flavorsText}
                     </h2>
 
                     <div className={containerPizzaDrink()}>
-                        {pizzaFlavors.map((pizza, index) => (
+                        {pizzaFlavors.map((pizza) => (
                             <ContainerFlavor pizza={pizza} key={pizza._id} handleSelectFlavor={handleSelectFlavor} />
                         ))}
                     </div>
@@ -224,7 +221,7 @@ export default function Render({ showPizzas, selectedSize, setSelectedSize, setS
                     </h2>
 
                     <div className={containerPizzaDrink()}>
-                        {drinks.map((drink, index) => (
+                        {drinks.map((drink) => (
                             <ContainerDrinks drink={drink} key={drink._id} handleSelectDrink={handleSelectDrink} />
                         ))}
                     </div>

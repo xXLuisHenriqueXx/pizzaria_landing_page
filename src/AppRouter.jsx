@@ -1,8 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Home from "./screens/Home";
 import Menu from "./screens/Menu";
 
-function AppRouter() {
+export default function AppRouter() {
     return (
         <BrowserRouter basename="/Pizzaria_LandingPage">
             <Routes>
@@ -13,5 +14,3 @@ function AppRouter() {
         </BrowserRouter>
     );
 }
-
-export default AppRouter;

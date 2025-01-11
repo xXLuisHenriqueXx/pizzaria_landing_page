@@ -12,35 +12,30 @@ const card = tv({
 
 const { container, image, title, normalText } = card();
 
-function ContainerSize({ size, setSelectedSize, setSizePrice}) {
-  return (
-    <div className={container()}
-        key={size._id}
-        onClick={() => {
-            setSelectedSize(size.value)
-            setSizePrice(size.price)
-        }}
-    >
-        <img className={image()}
-            src={size.imgSrc}
-            alt={size.imgAlt}
-        />
+export default function ContainerSize({ size, setSelectedSize, setSizePrice }) {
+    const handleSelectSize = (size) => {
+        setSelectedSize(size.value)
+        setSizePrice(size.price)
+    }
 
-        <div>
+    return (
+        <div className={container()} key={size._id} onClick={() => handleSelectSize(size)}>
+            <img className={image()} src={size.imgSrc} alt={size.imgAlt} />
+
             <div>
-                <h1 className={title()}>
-                    {size.title}
-                </h1>
-            </div>
-            <div className={normalText()}>
-                <li>{size.hungry}</li>
-                <li>{size.slices}</li>
-                <li>{size.size}</li>
-                <li>{size.numFlavors}</li>
+                <div>
+                    <h1 className={title()}>
+                        {size.title}
+                    </h1>
+                </div>
+
+                <div className={normalText()}>
+                    <li>{size.hungry}</li>
+                    <li>{size.slices}</li>
+                    <li>{size.size}</li>
+                    <li>{size.numFlavors}</li>
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
-
-export default ContainerSize;

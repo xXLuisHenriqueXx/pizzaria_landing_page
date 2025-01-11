@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { IoMdRemove } from "react-icons/io";
 import { tv } from 'tailwind-variants';
+import { IoMdRemove } from "react-icons/io";
 
 const card = tv({
   slots: {
@@ -60,14 +60,16 @@ const card = tv({
 
 const { container, containerModal, containerModalInternal, containerContent, modalTitle, contentTitle, smallContentText, flexBox, boxTitle, spanBox, containerPriceFinalize, containerInternalPriceFinalize, buttonFinalize, icon } = card();
 
-function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, sizePrice, selectedPizzaFlavors, setSelectedPizzaFlavors, selectedDrinks, setSelectedDrinks }) {
+export default function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, sizePrice, selectedPizzaFlavors, setSelectedPizzaFlavors, selectedDrinks, setSelectedDrinks }) {
   const [price, setPrice] = useState(0);
 
   const sizeTitle = () => {
     if (selectSize === 1) {
       return "Pequena"
+
     } else if (selectSize === 3) {
       return "Média"
+      
     } else {
       return "Família"
     }
@@ -75,15 +77,18 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
 
   const handleFinalizeOrder = () => {
     if (!selectSize) {
-      alert("Selecione um tamanho de pizza!");
+      alert("Selecione um tamanho de pizza!")
       return
+
     } else if (selectedPizzaFlavors.length === 0) {
-      alert("Selecione ao menos um sabor de pizza!");
+      alert("Selecione ao menos um sabor de pizza!")
       return
+
     } else {
-      const address = prompt("Digite o endereço de entrega:");
+      const address = prompt("Digite o endereço de entrega:")
+
       if (!address) {
-        alert("Digite um endereço válido!");
+        alert("Digite um endereço válido!")
         return
       }
 
@@ -105,30 +110,31 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
   }
 
   const removePizzaSize = () => {
-    setSelectSize(0);
-    setSelectedPizzaFlavors([]);
-    setShowPizzas(false);
-    calculatePrice();
+    setSelectSize(0)
+    setSelectedPizzaFlavors([])
+    setShowPizzas(false)
+    calculatePrice()
   }
 
   const removePizzaFlavor = (index) => {
-    setSelectedPizzaFlavors(prev => prev.filter((_, i) => i !== index));
+    setSelectedPizzaFlavors(prev => prev.filter((_, i) => i !== index))
   }
 
   const removeDrink = (index) => {
-    setSelectedDrinks(prevDrinks => prevDrinks.filter((_, i) => i !== index));
-    calculatePrice();
+    setSelectedDrinks(prevDrinks => prevDrinks.filter((_, i) => i !== index))
+
+    calculatePrice()
   }
 
   const calculatePrice = () => {
     let totalPrice;
 
-    if (selectSize === 0) totalPrice = 0;
-    else totalPrice = sizePrice;
+    if (selectSize === 0) totalPrice = 0
+    else totalPrice = sizePrice
 
     selectedDrinks.forEach(drink => {
-      totalPrice += drink.price * drink.quantity;
-    });
+      totalPrice += drink.price * drink.quantity
+    })
 
     setPrice(totalPrice);
   }
@@ -138,12 +144,8 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
   }, [selectSize, selectedPizzaFlavors, selectedDrinks]);
 
   return (
-    <div className={container()}
-      onClick={() => setShowModal(false)}
-    >
-      <div className={containerModal()}
-        onClick={(e) => e.stopPropagation()}
-      >
+    <div className={container()} onClick={() => setShowModal(false)} >
+      <div className={containerModal()} onClick={(e) => e.stopPropagation()} >
         <div className={containerModalInternal({ containerModalInternal: 'title' })}>
           <h1 className={modalTitle()}>
             SEU CARRINHO
@@ -154,34 +156,34 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
               <h1 className={contentTitle()}>
                 PIZZAS
               </h1>
+
               <div className={flexBox()}>
                 <p className={boxTitle()}>
                   Tamanho selecionado:
                 </p>
+
                 {selectSize ? (
                   <span className={spanBox({ spanBox: 'pizza' })}>
                     <p className={smallContentText()}>{sizeTitle()}</p>
-                    <IoMdRemove className={icon()}
-                      onClick={removePizzaSize}
-                    />
+
+                    <IoMdRemove className={icon()} onClick={removePizzaSize} />
                   </span>
                 ) : (
                   <p className={smallContentText()}>Nenhum tamanho selecionado</p>
                 )}
               </div>
+
               <div className={flexBox()}>
                 <p className={boxTitle()}>
                   Sabores selecionados:
                 </p>
+
                 {selectedPizzaFlavors.length > 0 ? (
                   selectedPizzaFlavors.map((flavor, index) => (
                     <span key={index} className={spanBox({ spanBox: 'pizza' })}>
                       <p className={smallContentText()}>{flavor.title}</p>
-                      <IoMdRemove className={icon()}
-                        onClick={() => {
-                          removePizzaFlavor(index);
-                        }}
-                      />
+
+                      <IoMdRemove className={icon()} onClick={() => removePizzaFlavor(index) } />
                     </span>
                   ))
                 ) : (
@@ -194,6 +196,7 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
               <h1 className={contentTitle()}>
                 BEBIDAS
               </h1>
+
               <div className={flexBox({ flexBox: 'drinkFlex' })}>
                 {selectedDrinks.length > 0 ? (
                   selectedDrinks.map((drink, index) => (
@@ -202,11 +205,8 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
                         <p className={boxTitle()}>{drink.quantity}x {drink.title}</p>
                         <p className={smallContentText()}>R$ {drink.price.toFixed(2)}</p>
                       </div>
-                      <IoMdRemove className={icon()}
-                        onClick={() => {
-                          removeDrink(index);
-                        }}
-                      />
+
+                      <IoMdRemove className={icon()} onClick={() => removeDrink(index) } />
                     </span>
                   ))
                 ) : (
@@ -222,9 +222,7 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
               <p className={smallContentText()}>R$ {price.toFixed(2)}</p>
             </div>
 
-            <button className={buttonFinalize()}
-              onClick={handleFinalizeOrder}
-            >
+            <button className={buttonFinalize()} onClick={handleFinalizeOrder}>
               Finalizar pedido
             </button>
           </div>
@@ -233,5 +231,3 @@ function ModalCart({ setShowModal, selectSize, setSelectSize, setShowPizzas, siz
     </div>
   )
 }
-
-export default ModalCart;

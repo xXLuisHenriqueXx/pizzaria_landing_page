@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaCartPlus } from 'react-icons/fa6'
 import { tv } from 'tailwind-variants';
+import { FaCartPlus } from 'react-icons/fa6'
 
 const card = tv({
     slots: {
@@ -14,31 +14,24 @@ const card = tv({
 
 const { container, image, title, price, button } = card();
 
-function ContainerDrinks({ drink, handleSelectDrink }) {
+export default function ContainerDrinks({ drink, handleSelectDrink }) {
     return (
-        <div className={container()}
-            key={drink._id}
-        >
-            <img
-                className={image()}
-                src={drink.imgSrc}
-                alt={drink.imgAlt}
-            />
+        <div className={container()} key={drink._id}>
+            <img className={image()} src={drink.imgSrc} alt={drink.imgAlt} />
+            
             <div className="w-1/3">
                 <h1 className={title()}>
                     {drink.title}
                 </h1>
+
                 <h1 className={price()}>
                     R$ {drink.price.toFixed(2)}
                 </h1>
             </div>
-            <div className={button()}
-                onClick={() => handleSelectDrink(drink)}
-            >
+
+            <div className={button()} onClick={() => handleSelectDrink(drink)}>
                 <FaCartPlus />
             </div>
         </div>
     )
 }
-
-export default ContainerDrinks

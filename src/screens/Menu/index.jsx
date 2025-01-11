@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import ContainerMain from "../../components/Menu/ContainerMain";
 import MenuNavbar from "../../components/Menu/MenuNavbar";
 import Render from "../../components/Menu/Render";
@@ -44,11 +45,10 @@ export default function Menu() {
             {showModal && <ModalCart setShowModal={setShowModal} selectSize={selectedSize} setSelectSize={setSelectedSize} sizePrice={sizePrice} setShowPizzas={setShowPizzas} selectedPizzaFlavors={selectedPizzaFlavors} setSelectedPizzaFlavors={setSelectedPizzaFlavors} selectedDrinks={selectedDrinks} setSelectedDrinks={setSelectedDrinks} />}
             
             <ContainerMain setShowModal={setShowModal}>
-
                 <MenuNavbar setShowPizzas={setShowPizzas} />
 
                 <Render showPizzas={showPizzas} selectedSize={selectedSize} setSelectedSize={setSelectedSize} setSizePrice={setSizePrice} handleSelectFlavor={handleSelectFlavor} handleSelectDrink={handleSelectDrink} />
             </ContainerMain>
         </>
-    );
+    )
 }
