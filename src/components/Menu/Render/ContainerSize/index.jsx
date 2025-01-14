@@ -3,10 +3,10 @@ import { tv } from 'tailwind-variants';
 
 const card = tv({
     slots: {
-        container: 'flex items-center justify-center lg:flex-col w-full h-32 md:w-2/3 md:mx-auto lg:w-60 lg:h-72 xl:w-80 xl:h-96 2xl:h-450 mt-4 gap-10 lg:gap-2 xl:gap-4 bg-box-background rounded-md hover:shadow-red cursor-pointer transition duration-200',
-        image: 'w-24 h-24 xl:w-32 xl:h-32 2xl:w-40 2xl:h-40 p-2 2xl:p-4 bg-box-background-darker rounded-md',
-        title: 'text-2xl xl:text-4xl 2xl:text-5xl font-imbue font-bold lg:text-center text-primary-red',
-        normalText: 'text-sm xl:text-lg 2xl:text-2xl text-white -mt-1 lg:mt-0'
+        container: 'flex items-center justify-between lg:flex-col w-full md:w-1/2 lg:w-60 xl:w-72 2xl:w-80 h-32 lg:h-72 xl:h-80 2xl:h-450 px-10 lg:px-0 lg:py-8 2xl:py-14 mt-4 md:mx-auto lg:mx-0 bg-box-background rounded-sm hover:scale-105 cursor-pointer transition duration-200',
+        image: 'w-24 h-24 xl:w-32 xl:h-32 2xl:w-40 2xl:h-40 p-2 2xl:p-4 bg-box-background-darker rounded-sm',
+        title: 'text-xl xl:text-3xl 2xl:text-4xl font-imbue font-bold lg:text-center text-primary-red uppercase',
+        normalText: 'text-sm xl:text-base 2xl:text-lg font-inter font-regular text-white lg:mt-0 opacity-75'
     }
 })
 
@@ -19,7 +19,7 @@ export default function ContainerSize({ size, setSelectedSize, setSizePrice }) {
     }
 
     return (
-        <div className={container()} key={size._id} onClick={() => handleSelectSize(size)}>
+        <div className={container()} key={size.id} onClick={() => handleSelectSize(size)}>
             <img className={image()} src={size.imgSrc} alt={size.imgAlt} />
 
             <div>
@@ -30,10 +30,10 @@ export default function ContainerSize({ size, setSelectedSize, setSizePrice }) {
                 </div>
 
                 <div className={normalText()}>
-                    <li>{size.hungry}</li>
-                    <li>{size.slices}</li>
-                    <li>{size.size}</li>
-                    <li>{size.numFlavors}</li>
+                    {/* <p>+ {size.hungry}</p> */}
+                    <p>+ {size.slices}</p>
+                    <p>+ {size.size}</p>
+                    <p>+ {size.numFlavors}</p>
                 </div>
             </div>
         </div>

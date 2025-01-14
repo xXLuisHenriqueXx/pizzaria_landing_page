@@ -4,8 +4,8 @@ import { IoMdRemove } from "react-icons/io";
 
 const card = tv({
   slots: {
-    container: 'w-full min-h-screen bg-fade-modal fixed z-[99]',
-    containerModal: ' w-[90%] h-600 px-2 py-5 lg:w-800 lg:px-5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-box-background rounded-md shadow-red',
+    container: 'flex items-center justify-center w-full min-h-screen bg-fade-modal fixed z-[99]',
+    containerModal: 'w-full h-600 px-2 py-5 lg:w-800 mx-6 md:mx-8 lg:px-5 bg-box-background rounded-sm',
     containerModalInternal: 'flex flex-1 flex-col items-center',
     containerContent: 'flex flex-col justify-start items-center w-full py-2 border-t-2 border-b-2 border-border-red lg:h-450',
     modalTitle: 'mb-4 text-3xl lg:text-4xl font-imbue text-primary-red',
@@ -16,7 +16,7 @@ const card = tv({
     boxTitle: 'text-sm lg:text-lg font-inter font-bold text-white',
     containerPriceFinalize: 'flex flex-row justify-between items-center w-full h-full px-1 py-4',
     containerInternalPriceFinalize: 'flex flex-row items-center',
-    buttonFinalize: 'px-4 py-2 bg-primary-red hover:bg-highlight-red text-sm rounded-md md:text-lg font-inter font-bold text-white hover:shadow-red cursor-pointer duration-200',
+    buttonFinalize: 'px-4 py-2 bg-primary-red hover:bg-highlight-red text-sm rounded-sm md:text-lg font-inter font-bold text-white hover:shadow-red cursor-pointer duration-200',
     icon: 'text-white text-lg cursor-pointer border border-primary-red rounded hover:text-primary-red transition duration-200',
   },
 
@@ -26,7 +26,7 @@ const card = tv({
         containerContent: 'h-200 lg:border-r-2',
       },
       drink: {
-        containerContent: 'h-250',
+        containerContent: 'h-250 border-t-0 lg:border-t-2',
       }
     },
     containerModalInternal: {
@@ -112,7 +112,7 @@ export default function ModalCart({ setShowModal, selectSize, setSelectSize, set
   const removePizzaSize = () => {
     setSelectSize(0)
     setSelectedPizzaFlavors([])
-    setShowPizzas(false)
+    setShowPizzas(true)
     calculatePrice()
   }
 

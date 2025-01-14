@@ -1,36 +1,37 @@
 import React from 'react';
 import { tv } from 'tailwind-variants';
-import { FaCartPlus } from 'react-icons/fa6'
+import { Plus } from 'lucide-react';
 
 const card = tv({
     slots: {
-        container: 'flex items-center justify-center w-full h-32 md:w-[95%] xl:h-44 2xl:w-550 2xl:h-200 mt-4 gap-4 xl:gap-10 bg-box-background rounded-md',
-        image: 'w-24 h-24 xl:w-28 xl:h-28 2xl:w-40 2xl:h-40 rounded-md object-cover',
-        title: 'text-xl xl:text-4xl font-imbue font-bold text-primary-red',
-        price: 'mt-2 xl:mt-6 text-base xl:text-xl font-inter font-bold text-white',
-        button: 'p-4 text-2xl xl:text-4xl text-white bg-primary-red rounded-full hover:bg-highlight-red hover:shadow-red cursor-pointer duration-200'
+        container: 'flex items-center justify-between w-full h-32 xl:h-44 2xl:h-200 mt-4 xl:mt-8 px-4 lg:px-8 xl:px-10 bg-box-background rounded-sm',
+        image: 'w-20 h-20 xl:w-24 xl:h-24 2xl:w-32 2xl:h-32 rounded-sm border-2 border-dashed border-primary-red bg-white object-contain',
+        title: 'text-xl lg:text-2xl font-imbue font-bold text-primary-red',
+        normalText: 'text-sm lg:text-lg font-inter font-regular text-white opacity-75',
+        button: ' flex items-center justify-center w-12 h-12 xl:w-16 xl:h-16 bg-primary-red rounded-full hover:bg-highlight-red hover:shadow-red cursor-pointer duration-200',
+        icon: 'w-6 h-6 xl:w-8 xl:h-8 text-white'
     }
 });
 
-const { container, image, title, price, button } = card();
+const { container, image, title, normalText, button, icon } = card();
 
 export default function ContainerDrinks({ drink, handleSelectDrink }) {
     return (
         <div className={container()} key={drink._id}>
             <img className={image()} src={drink.imgSrc} alt={drink.imgAlt} />
-            
-            <div className="w-1/3">
+
+            <div className="w-1/2">
                 <h1 className={title()}>
                     {drink.title}
                 </h1>
 
-                <h1 className={price()}>
+                <h1 className={normalText()}>
                     R$ {drink.price.toFixed(2)}
                 </h1>
             </div>
 
             <div className={button()} onClick={() => handleSelectDrink(drink)}>
-                <FaCartPlus />
+                <Plus className={icon()} strokeWidth={3} />
             </div>
         </div>
     )

@@ -7,7 +7,7 @@ import Header from "../Header";
 const card = tv({
     slots: {
         container: 'flex flex-col w-full min-h-screen pb-4 bg-box-background-darker',
-        main: 'px-4 md:px-8 xl:px-16'
+        main: 'px-6 md:px-8 xl:px-16 2xl:px-32',
     }
 });
 
