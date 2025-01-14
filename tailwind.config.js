@@ -20,7 +20,7 @@ export default {
         'border-red': '#EA1E1E25',
         'box-green': '#0FA35360',
         'border-green': '#0FA353',
-        'box-background': '#2E252E',
+        'box-background': '#322B32',
         'box-background-darker': '#171117',
         'fade-modal': '#080617e6'
       },
@@ -44,6 +44,7 @@ export default {
       },
 
       width: {
+        '400': '25rem',
         '500': '31.25rem',
         '550': '34.375rem',
         '600': '37.5rem',
@@ -54,6 +55,7 @@ export default {
       height: {
         '200': '12.5rem',
         '250': '15.625rem',
+        '300': '18.75rem',
         '400': '25rem',
         '450': '28.125rem',
         '500': '31.25rem',
