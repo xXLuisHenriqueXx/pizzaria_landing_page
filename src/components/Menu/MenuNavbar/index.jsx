@@ -9,7 +9,7 @@ const card = tv({
     variants: {
         button: {
             selected: {
-                buttonText: 'text-primary-red bg-box-background rounded-sm',
+                buttonText: 'text-primary-red bg-box-background rounded-xs',
             },
             notSelected: {
                 buttonText: 'text-white',
