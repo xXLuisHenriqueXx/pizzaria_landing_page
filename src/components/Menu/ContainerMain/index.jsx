@@ -1,34 +1,34 @@
-import React from 'react';
-import { tv } from 'tailwind-variants';
+import React from "react";
+import { tv } from "tailwind-variants";
 
 import Navbar from "../../Navbar";
 import Header from "../Header";
 
 const card = tv({
-    slots: {
-        container: 'flex flex-col w-full min-h-screen pb-4 bg-box-background-darker',
-        main: 'px-6 md:px-8 xl:px-16 2xl:px-32',
-    }
+  slots: {
+    container:
+      "flex flex-col w-full min-h-screen pb-4 bg-box-background-darker",
+    main: "px-6 md:px-8 xl:px-16 2xl:px-32",
+  },
 });
 
 const { container, main } = card();
 
 export default function ContainerMain({ children, setShowModal }) {
-    return (
-        <div className={container()}
-            style={{
-                overflowY: "scroll",
-                scrollbarWidth: "none",
-                msOverflowStyle: 'none',
-            }}
-        >
-            <Navbar setShowModal={setShowModal} screen={'menu'} />
+  return (
+    <div
+      className={container()}
+      style={{
+        overflowY: "scroll",
+        scrollbarWidth: "none",
+        msOverflowStyle: "none",
+      }}
+    >
+      <Navbar setShowModal={setShowModal} screen={"menu"} />
 
-            <Header />
+      <Header />
 
-            <main className={main()}>
-                {children}
-            </main>
-        </div>
-    )
+      <main className={main()}>{children}</main>
+    </div>
+  );
 }

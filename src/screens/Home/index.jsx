@@ -5,11 +5,11 @@ import ContainerText from "../../components/Home/ContainerText";
 import ContainerMenu from "../../components/Home/ContainerMenu";
 
 export default function Home() {
-    return (
-        <ContainerMain>
-            <ContainerText />
+  return (
+    <ContainerMain>
+      <ContainerText />
 
-            <ContainerMenu />
-        </ContainerMain>
-    )
+      <ContainerMenu />
+    </ContainerMain>
+  );
 }
