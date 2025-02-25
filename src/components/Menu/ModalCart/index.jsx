@@ -5,7 +5,7 @@ import { IoMdRemove } from "react-icons/io";
 const card = tv({
   slots: {
     container: 'flex items-center justify-center w-full min-h-screen bg-fade-modal fixed z-99',
-    containerModal: 'w-full h-600 px-2 py-5 lg:w-800 mx-6 md:mx-8 lg:px-5 bg-box-background rounded-xs',
+    containerModal: 'w-full h-600 px-2 py-5 lg:w-800 mx-6 md:mx-8 lg:px-5 bg-box-background rounded-sm',
     containerModalInternal: 'flex flex-1 flex-col items-center',
     containerContent: 'flex flex-col justify-start items-center w-full py-2 border-t-2 border-b-2 border-border-red lg:h-450',
     modalTitle: 'mb-4 text-3xl lg:text-4xl font-imbue text-primary-red',
@@ -16,7 +16,7 @@ const card = tv({
     boxTitle: 'text-sm lg:text-lg font-inter font-bold text-white',
     containerPriceFinalize: 'flex flex-row justify-between items-center w-full h-full px-1 py-4',
     containerInternalPriceFinalize: 'flex flex-row items-center',
-    buttonFinalize: 'px-4 py-2 bg-primary-red hover:bg-highlight-red text-sm rounded-xs md:text-lg font-inter font-bold text-white hover:shadow-red cursor-pointer duration-200',
+    buttonFinalize: 'p-2 bg-primary-red hover:bg-highlight-red text-sm rounded-sm md:text-lg font-inter font-bold text-white hover:shadow-red cursor-pointer duration-200',
     icon: 'text-white text-lg cursor-pointer border border-primary-red rounded-sm hover:text-primary-red transition duration-200',
   },
 
