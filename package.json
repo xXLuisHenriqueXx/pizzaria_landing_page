@@ -1,8 +1,8 @@
 {
-  "name": "pizzaria_landingpage",
+  "name": "pizzaria_landing_page",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://xxluishenriquexx.github.io/Pizzaria_LandingPage/",
+  "homepage": "https://xxluishenriquexx.github.io/pizzaria_landing_page/",
   "type": "module",
   "scripts": {
     "dev": "vite",
