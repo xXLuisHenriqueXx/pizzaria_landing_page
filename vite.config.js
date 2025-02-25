@@ -5,5 +5,5 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: "https://xxluishenriquexx.github.io/Pizzaria_LandingPage/",
+  base: "https://xxluishenriquexx.github.io/pizzaria_landing_page/",
 });

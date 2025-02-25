@@ -5,7 +5,7 @@ import Menu from "./screens/Menu";
 
 export default function AppRouter() {
   return (
-    <BrowserRouter basename="/Pizzaria_LandingPage">
+    <BrowserRouter basename="/pizzaria_landing_page">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
