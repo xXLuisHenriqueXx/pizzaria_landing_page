@@ -1,26 +1,16 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from "./screens/Home";
 import Menu from "./screens/Menu";
 
 export default function AppRouter() {
-  const router = createBrowserRouter(
-    [
-      {
-        path: "/pizzaria_landing_page/",
-        element: <Home />,
-      },
-      {
-        path: "/pizzaria_landing_page/menu",
-        element: <Menu />,
-      },
-      // {
-      //     path: "*",
-      //     element: <NotFound />
-      // }
-    ],
-    { basename: "/" }
+  return (
+    <BrowserRouter basename="/Pizzaria_LandingPage">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
+        {/* <Route path="*" component={NotFound} /> */}
+      </Routes>
+    </BrowserRouter>
   );
-
-  return <RouterProvider router={router} />;
 }

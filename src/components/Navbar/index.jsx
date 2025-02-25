@@ -20,7 +20,7 @@ const { container, logo, containerIcons, icon } = card();
 export default function Navbar({ screen, setShowModal }) {
   return (
     <div className={container()}>
-      <Link to="/pizzaria_landing_page/">
+      <Link to="/">
         <img className={logo()} src={Logo} alt="Logo da pizzaria DevPizza" />
       </Link>
 

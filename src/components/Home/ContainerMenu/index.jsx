@@ -28,7 +28,7 @@ export default function ContainerMenu() {
         Acesse nosso cardápio clicando no botão abaixo
       </h2>
 
-      <Link className={buttonLink()} to="/pizzaria_landing_page/menu">
+      <Link className={buttonLink()} to="/menu">
         <div className={buttonLinkText()}>Visualizar CARDÁPIO</div>
 
         <Pizza className={buttonLinkIcon()} />
