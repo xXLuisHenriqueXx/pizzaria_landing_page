@@ -17,7 +17,7 @@ export default function AppRouter() {
         //     path: "*",
         //     element: <NotFound />
         // }
-    ])
+    ], { basename: "/" });
 
     return (
         <RouterProvider router={router} />
