@@ -6,11 +6,11 @@ import Menu from "./screens/Menu";
 export default function AppRouter() {
     const router = createBrowserRouter([
         {
-            path: "/",
+            path: "/pizzaria_landing_page/",
             element: <Home />
         },
         {
-            path: "/menu",
+            path: "/pizzaria_landing_page/menu",
             element: <Menu />
         },
         // {
