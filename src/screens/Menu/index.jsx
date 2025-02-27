@@ -28,11 +28,11 @@ export default function Menu() {
   };
 
   const handleSelectDrink = (drink) => {
-    const existingDrink = selectedDrinks.find((d) => d._id === drink._id);
+    const existingDrink = selectedDrinks.find((d) => d.id === drink.id);
 
     if (existingDrink) {
       const updatedDrinks = selectedDrinks.map((d) =>
-        d._id === drink._id ? { ...d, quantity: d.quantity + 1 } : d
+        d.id === drink.id ? { ...d, quantity: d.quantity + 1 } : d
       );
       setSelectedDrinks(updatedDrinks);
     } else {

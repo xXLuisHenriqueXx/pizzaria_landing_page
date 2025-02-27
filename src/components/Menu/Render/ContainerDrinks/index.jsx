@@ -21,7 +21,7 @@ const { container, image, title, normalText, button, icon } = card();
 
 export default function ContainerDrinks({ drink, handleSelectDrink }) {
   return (
-    <div className={container()} key={drink._id}>
+    <div className={container()} key={drink.id}>
       <img className={image()} src={drink.imgSrc} alt={drink.imgAlt} />
 
       <div className="w-1/2">
@@ -30,7 +30,9 @@ export default function ContainerDrinks({ drink, handleSelectDrink }) {
         <h1 className={normalText()}>R$ {drink.price.toFixed(2)}</h1>
       </div>
 
-      <div className={button()} onClick={() => handleSelectDrink(drink)}>
+      <div className={button()} onClick={() => {
+        handleSelectDrink(drink)
+      }}>
         <Plus className={icon()} strokeWidth={3} />
       </div>
     </div>

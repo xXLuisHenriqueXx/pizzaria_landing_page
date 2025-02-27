@@ -31,12 +31,14 @@
   --background-image-header: url("/src/assets/backgrounds/header_background.svg");
 
   --width-400: 25rem;
+  --widt-450: 28.125rem;
   --width-500: 31.25rem;
   --width-550: 34.375rem;
   --width-600: 37.5rem;
   --width-700: 43rem;
   --width-800: 50rem;
 
+  --height-150: 9.375rem;
   --height-200: 12.5rem;
   --height-250: 15.625rem;
   --height-300: 18.75rem;

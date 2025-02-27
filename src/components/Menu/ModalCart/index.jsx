@@ -122,16 +122,22 @@ export default function ModalCart({
       const totalPrice =
         sizePrice + selectedDrinks.reduce((acc, drink) => acc + drink.price, 0);
       const pizzaFlavors = selectedPizzaFlavors
-        .map((flavor, index) => flavor.title)
-        .join(", ");
+        .map((flavor) => `- ${flavor.title}`)
+        .join("\n");
       const drinks = selectedDrinks
-        .map((drink, index) => `${drink.quantity}x ${drink.title}`)
-        .join(", ");
+        .map((drink) => `- ${drink.quantity}x ${drink.title}`)
+        .join("\n");
       const size = sizeTitle(selectSize);
 
-      const message = `Pedido finalizado!\n\nTamanho da pizza: ${size}\nSabores: ${pizzaFlavors}\nBebidas: ${drinks}\nTotal a pagar: R$ ${totalPrice.toFixed(
-        2
-      )}\nEndereço de entrega: ${address}`;
+      const message = `*Pedido finalizado!*
+=----------------------------------=
+*Tamanho da pizza*: ${size} \n
+*Sabores*:
+${pizzaFlavors} \n
+*Bebidas*:
+${drinks} \n
+*Total a pagar*: R$ ${totalPrice.toFixed(2)} \n
+*Endereço de entrega*: ${address}`;
 
       const phoneNumber = import.meta.env.VITE_PHONE;
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
